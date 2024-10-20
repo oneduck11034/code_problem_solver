@@ -1,39 +1,40 @@
-use std::ops::Index;
+`use std::ops::Index;
 
 pub fn get_running_result(left_v: Vec<&str>, right_v: Vec<&str>) -> Option<Vec<String>> {
     let result_v: Vec<String>= Vec::new();
-    let mut idx= 0;
-    // let calling: [String; 32] = Default::default();
     let mut calling_buff: Vec<u32>= Vec::new();
-    let mut start_rank= left_v.clone();
-    let orginal_rank_name= left_v.clone();
-
-    for e_i in 0..=left_v.len() {
+    
+    for e in 0..=left_v.len(){
         calling_buff.push(0);
     }
     
+    let mut idx= 0;
+    let mut cnt= 0;
+    let right_vv= right_v.clone();
+
     for name_e in right_v{
-
-        if left_v.contains(&&name_e){
-            
-        }
-
+        idx= right_vv.iter().position(|n| n == name_e);
+        calling_buff[idx as usize]+= 1;
     }
     
-    //  names.iter().position(|n| n == name).
-    idx= 0;
-    for e in 0..=left_v.len() {
-        start_rank.index(e) += calling_buff[e];
-    }
-    
-    idx= 0;
-    for e in left_v.len()..0 {
-        // let gap= return start_rank index 
-        // pointer
-        // FIX result_v idx = orginal_rank_name[e + gap]
+    let mut laste_index_v: Vec<i32>= Vec::new();
+    for e in 0..=left_v.len(){
+        laste_index_v.push(0);
     }
 
-    Option::from(result_v)
+    for idx in 0..=right_v.len(){
+        laste_index_v[idx as usize]= calling_buff[idx] + idx; 
+    }
+
+    let right_vvv= right_v.clone();
+    unsafe {
+        let mut idx= 0_usize;
+        // transaction laste_index_v -> left_v
+        // laste_index_v[]
+    }
+
+    // &str -> String
+    Option::from(left_v)
 }
 
 #[cfg(test)]
